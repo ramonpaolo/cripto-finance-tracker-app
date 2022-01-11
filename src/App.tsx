@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     setTimeout(async () => {
       let response = await axios.get(
-        "http://economia.awesomeapi.com.br/json/last/USD-BRL"
+        "https://economia.awesomeapi.com.br/json/last/USD-BRL"
       );
       let priceDolar = parseFloat(await response.data["USDBRL"]["ask"]);
       setPriceDolar(priceDolar);
