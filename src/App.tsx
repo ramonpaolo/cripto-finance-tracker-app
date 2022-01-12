@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 //---- Styles
 import "./App.css";
 
+//---- Icons
+import refresh from "./assets/refresh.svg";
+
 //---- Components
 import Coin from "./components/Coin";
 
@@ -27,11 +30,15 @@ function App() {
       );
       let priceDolar = parseFloat(await response.data["USDBRL"]["ask"]);
       setPriceDolar(priceDolar);
-      // setPriceDolar(5.64);
     }, 1);
   }, []);
 
-  if (priceDolar === 0.0) return <h1>Loading</h1>;
+  if (priceDolar === 0.0 || criptos === undefined)
+    return (
+      <div id="loading-div">
+        <img className="loading" src={refresh} alt="refresh icon" />
+      </div>
+    );
   else
     return (
       <div className={`${theme}`}>

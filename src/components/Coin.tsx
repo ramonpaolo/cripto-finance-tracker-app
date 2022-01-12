@@ -53,7 +53,7 @@ export default function Coin(props: any) {
             className="arrow-negative"
           />
         )}{" "}
-        {parseFloat(cripto.change).toString().replace(".", ",")}
+        {parseFloat(cripto.change).toString().replace(".", ",")}%
       </span>
 
       <div className="coin-column-price" title={`${cripto.change}`}>
