@@ -10,7 +10,9 @@ export const CriptoProvider = (props: any) => {
   const [criptos, setCriptos] = useState<ICripto[] | undefined>(undefined);
 
   const getDatas = async () => {
-    let response = await axios.get("https://api.coinranking.com/v2/coins", {});
+    let response = await axios.get(
+      "https://proxy-reverse-coin.herokuapp.com/https://api.coinranking.com/v2/coins"
+    );
     let coins: ICripto[] = await response.data.data.coins;
     setCriptos(coins);
   };
