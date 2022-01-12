@@ -1,50 +1,59 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# Cripto Finance Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Link Site: 
+https://pedantic-sinoussi-8b86be.netlify.app/ [![Netlify Status](https://api.netlify.com/api/v1/badges/992ca56a-42dc-4922-a659-717236f25888/deploy-status)](https://app.netlify.com/sites/pedantic-sinoussi-8b86be/deploys)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📑 Sobre o projeto
 
-### `npm start`
+É uma aplicação web Front-End(React), para mostrar as 50 maiores cryptocoins de valor no mercado
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Como Funciona ?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+A aplicação consiste em poder visualizar o preço atual em USD e BRL, marketcap(Valor de mercado), variação do preço em 24h, logo, nome e simbolo da crypto.
 
-### `npm test`
+É utilizado a lib axios para fazer a requisição da [API](https://coinranking.com/) das 50 criptocoins, e da [API](https://docs.awesomeapi.com.br/api-de-moedas) de câmbio do dólar, e utilizado o gerenciador de estados nativo do React(ContextAPI) para fazer a atualização dos dados da cripto, a cada 40 segundos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+O site também possui modo dark e modo light, podendo ser trocado a qualquer instante de temas.
 
-### `npm run build`
+Ops: Foi criado um pequeno Proxy Reverse em nodejs com express, para a utilização da API da coinranking
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- ## Detalhe:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+O site até o momento atual, funciona apenas habilitando o CORS no navegador(via plugin) por limitação da API gratuita.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para quem desejar que o site funcione sem essa limitação, basta utilizar um proxy, ou criar um pequeno servidor, acessar a API pelo servidor(back-end) e fazer a sua requisição para o seu próprio servidor(back-end) retornar os dados.
 
-### `npm run eject`
+Para mais informaçãos, acesse: [Medium](https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9) -->
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 🚀 Tecnologias Utilizadas
+- ReactJs
+- TypeScript
+- ContextAPI
+- Axios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# 📁 Como executar o projeto?
+Pré-requesitos: NodeJs 14.17 LTS e Yarn
 
-## Learn More
+```bash
+# clonar repositório
+$ git clone https://github.com/ramonpaolo/cripto-finance-tracker-app
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# entrar na pasta do projeto
+$ cd cripto-finance-tracker-app/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-=======
-# cripto-finance-tracker-app
->>>>>>> dfdc86c77c6e704939c1d1d1ea02c0ae1f731017
+# instalar as depêndencias:
+$ yarn install
+
+# iniciar o projeto:
+$ yarn start
+```
+
+![GitHub top language](https://img.shields.io/github/languages/top/ramonpaolo/cripto-finance-tracker-app)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ramonpaolo/cripto-finance-tracker-app)
+![GitHub](https://img.shields.io/github/license/ramonpaolo/cripto-finance-tracker-app)
