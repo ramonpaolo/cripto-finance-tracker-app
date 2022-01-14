@@ -27,7 +27,7 @@ function App() {
         });
     }, []);
 
-    if (priceDolar === 0.0 || cryptos === undefined)
+    if (priceDolar === 0.0 || cryptos[0].name === "")
         return (
             <div id="loading-div">
                 <img className="loading" src={refresh} alt="refresh icon" />
