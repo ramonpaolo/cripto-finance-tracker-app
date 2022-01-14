@@ -1,32 +1,71 @@
-import React, { useContext, createContext, useState, useEffect } from "react";
 import axios from "axios";
+import React, {
+    useContext,
+    createContext,
+    useState,
+    useEffect,
+    ReactElement,
+} from "react";
+import { JsxElement } from "typescript";
 
 //---- Interfaces
-import ICripto from "../interfaces/CriptoInterface";
+import ICrypto from "../interfaces/CryptoInterface";
+import ICriptoProvider from "../interfaces/CryptoProviderInterface";
 
-export const CriptoContext = createContext({});
+const DEFAULT_VALUES: ICriptoProvider = {
+    cryptos: [
+        {
+            btcPrice: "",
+            change: "",
+            coinrankingUrl: "",
+            color: "",
+            iconUrl: "",
+            listedAt: 0,
+            lowVolume: true,
+            marketCap: "",
+            name: "",
+            price: "",
+            rank: 0,
+            sparkline: [""],
+            symbol: "",
+            tier: 0,
+            uuid: "",
+            volume24h: "",
+        },
+    ],
+    setCriptos: () => {
+        return;
+    },
+};
 
-export const CriptoProvider = (props: any) => {
-  const [criptos, setCriptos] = useState<ICripto[] | undefined>(undefined);
+export const CriptoContext = createContext<ICriptoProvider>(DEFAULT_VALUES);
 
-  const getDatas = async () => {
-    let response = await axios.get(
-      "https://proxy-reverse-coin.herokuapp.com/https://api.coinranking.com/v2/coins"
+export const CriptoProvider = ({
+    children,
+}: {
+    children: ReactElement | JsxElement;
+}): ReactElement => {
+    const [cryptos, setCriptos] = useState<ICrypto[]>(DEFAULT_VALUES.cryptos);
+
+    const getDatas = async () => {
+        const response = await axios.get(
+            "https://proxy-reverse-coin.herokuapp.com/https://api.coinranking.com/v2/coins"
+        );
+        const coins: ICrypto[] = await response.data.data.coins;
+        setCriptos(coins);
+    };
+
+    useEffect(() => {
+        setTimeout(async () => await getDatas());
+
+        setInterval(async () => await getDatas(), 40000);
+    }, []);
+
+    return (
+        <CriptoContext.Provider value={{ cryptos, setCriptos }}>
+            {children}
+        </CriptoContext.Provider>
     );
-    let coins: ICripto[] = await response.data.data.coins;
-    setCriptos(coins);
-  };
-
-  useEffect(() => {
-    setTimeout(async () => await getDatas(), 1);
-    setInterval(async () => await getDatas(), 40000);
-  }, []);
-
-  return (
-    <CriptoContext.Provider value={{ criptos, setCriptos }}>
-      {props.children}
-    </CriptoContext.Provider>
-  );
 };
 
 export const useCripto = () => useContext(CriptoContext);

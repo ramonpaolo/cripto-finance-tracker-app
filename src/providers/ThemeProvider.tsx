@@ -1,27 +1,46 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+    createContext,
+    ReactElement,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
+import { JsxElement } from "typescript";
 
-export type Theme = "dark" | "light";
+// ---- Interfaces
+import IThemeProvider from "../interfaces/ThemeProviderInterface";
+import { Theme } from "../interfaces/ThemeType";
 
-export const ThemeContext = createContext({});
+const DEFAULT_VALUE: IThemeProvider = {
+    setTheme: () => {
+        return;
+    },
+    theme: "dark",
+};
 
-export const ThemeProvider = (props: any) => {
-  const [theme, setTheme] = useState<Theme>("dark");
+export const ThemeContext = createContext<IThemeProvider>(DEFAULT_VALUE);
 
-  useEffect(() => {
-    let theme = localStorage.getItem("theme");
-    if (theme !== null) setTheme(theme as Theme);
-    console.log(theme)
-  }, []);
+export const ThemeProvider = ({
+    children,
+}: {
+    children: ReactElement | JsxElement;
+}): ReactElement => {
+    const [theme, setTheme] = useState<Theme>(DEFAULT_VALUE.theme);
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    useEffect(() => {
+        const theme = localStorage.getItem("theme");
+        if (theme !== null) setTheme(theme as Theme);
+    }, []);
 
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {props.children}
-    </ThemeContext.Provider>
-  );
+    useEffect(() => {
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    return (
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+            {children}
+        </ThemeContext.Provider>
+    );
 };
 
 export const useTheme = () => useContext(ThemeContext);
