@@ -1,5 +1,7 @@
 # Cripto Finance Tracker
 
+![gif-cripto-finance-tracker](https://ik.imagekit.io/9t3dbkxrtl/gif-finance-tracker_SM9r2QsAyMZ.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1642375703424)
+
 ### Link Site: 
 https://pedantic-sinoussi-8b86be.netlify.app/ [![Netlify Status](https://api.netlify.com/api/v1/badges/992ca56a-42dc-4922-a659-717236f25888/deploy-status)](https://app.netlify.com/sites/pedantic-sinoussi-8b86be/deploys)
 
